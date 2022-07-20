@@ -1,0 +1,74 @@
+@import "resizer-iner.css";
+@import "switch.css";
+
+.right-ex {
+    background-color: aquamarine !important;
+}
+.shield-ex-on {
+    background-color: black;
+    opacity: .2;
+}
+#resizableResizerEx{
+    background-color: blue;
+}
+#ctnDisplay.resizable .left-ex{
+    background-color: aqua !important;
+}
+
+/* //////////////EX//////////////////// */
+#ctnDisplay.resizable {
+    position: fixed;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: moz-none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow: hidden;
+}
+
+.shield-ex-on {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 100000;
+    cursor: w-resize;
+}
+#ctnDisplay.resizable {
+    width: calc(100% - 0px);
+    height: calc(100% - 0px);
+}
+#ctnDisplay.resizable .left-ex {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: auto;
+}
+#ctnDisplay.resizable .right-ex {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    background: var(--v-fond-base);
+}
+#resizableResizerEx {
+    position: absolute;
+    cursor: w-resize;
+    width: 16px;
+    border-left: 1px var(--v-border) solid;
+    margin-right: -10px;
+    z-index: 99999;
+    top: calc(50% - 40px);
+    height: 155px;
+    transform: translateX(10px);
+}
+#resizableResizerEx:hover {
+    border-left: 1px var(--v-action) solid;
+}
+
+.resizableResizerEx-shadow {
+    box-shadow: -4px 0px 4px rgb(0 0 0 / 25%);
+}
+
+/* //////////////IN//////////////////// */

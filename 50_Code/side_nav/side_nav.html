@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>左侧目录导航随内容滚动而变化</title>
+    <style type="text/css">
+        .side_nav {
+            line-height: 34px;
+            color: #999;
+            width: 138px;
+            height: 385px;
+            display: block;
+            overflow: hidden;
+            position: fixed;
+            left: 10px;
+            bottom: 20px;
+            z-index: 999;
+        }
+
+        .side_nav dt {
+            width: 100%;
+            height: auto;
+            margin: 10px 0 0;
+            display: block;
+            position: relative;
+            zoom: 1;
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        .side_nav dt .i1 {
+            border: 2px solid #e7e7e7;
+            width: 18px;
+            height: 18px;
+            border-radius: 18px;
+            z-index: 9;
+            position: absolute;
+            background-color: #fff;
+            left: 0px;
+        }
+
+        .side_nav dt .i2 {
+            width: 12px;
+            height: 12px;
+            border: 2px solid #f4f4f4;
+            background: #f4f4f4;
+            border-radius: 12px;
+            box-shadow: inset 0px 0px 3px #518ABC, inset 0px 0px 3px #518ABC, inset 0px 0px 3px #518ABC, inset 0px 0px 3px #518ABC;
+            display: block;
+            margin: 1px 0 0 1px;
+        }
+
+        .side_nav dt .i3 {
+            display: block;
+            width: 0;
+            border: 3px solid #e7e7e7;
+            border-radius: 6px;
+            position: relative;
+            left: 22px;
+            top: 9px;
+        }
+
+        .side_nav dt strong {
+            padding: 2px 15px 4px 15px;
+            font-size: 14px;
+            font-weight: normal;
+            color: #333;
+            background: #e7e7e7;
+            border-radius: 4px;
+            position: relative;
+            left: 28px;
+            border-radius: 20px;
+            top: -13px;
+        }
+
+        .side_nav .f-hover strong {
+            background: #518ABC;
+            color: #fff;
+        }
+
+        .side_nav .f-hover .i1,
+        .side_nav .f-hover .i3 {
+            border-color: #518abc;
+        }
+
+        .side_nav .f-hover .i2 {
+            background: #518ABC;
+        }
+
+        .side_nav dd {
+            width: 1px;
+            height: 265px;
+            background: #aaa;
+            position: absolute;
+            left: 10px;
+            top: 30px;
+            display: block;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 50%;
+            float: right;
+            height: auto;
+        }
+
+        .side_nav_scroll {
+            width: 100%;
+            min-height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="side_nav">
+        <dt class="f-hover"><i class="i1"><i class="i2"></i></i><i class="i3"></i><strong>游戏推荐</strong></dt>
+        <dt class=""><i class="i1"><i class="i2"></i></i><i class="i3"></i><strong>应用推荐</strong></dt>
+        <dt class=""><i class="i1"><i class="i2"></i></i><i class="i3"></i><strong>最新专题</strong></dt>
+        <dt class=""><i class="i1"><i class="i2"></i></i><i class="i3"></i><strong>知识专栏</strong></dt>
+        <dt class=""><i class="i1"><i class="i2"></i></i><i class="i3"></i><strong>高清美图</strong></dt>
+        <dt class=""><i class="i1"><i class="i2"></i></i><i class="i3"></i><strong>精彩视频</strong></dt> 
+        <dt class=""><i class="i1"><i class="i2"></i></i><i class="i3"></i><strong>应用推荐</strong></dt>
+        <dt class=""><i class="i1"><i class="i2"></i></i><i class="i3"></i><strong>最新专题</strong></dt>
+        <dt class=""><i class="i1"><i class="i2"></i></i><i class="i3"></i><strong>知识专栏</strong></dt>
+        <dt class=""><i class="i1"><i class="i2"></i></i><i class="i3"></i><strong>高清美图</strong></dt>
+        <dt class=""><i class="i1"><i class="i2"></i></i><i class="i3"></i><strong>精彩视频</strong></dt>
+        <dd></dd>
+    </ul>
+    <div class="container">
+        <div class="side_nav_scroll">游戏推荐</div>
+        <div class="side_nav_scroll">应用推荐</div>
+        <div class="side_nav_scroll">
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+            最新专题 <br>
+
+        </div>
+        <div class="side_nav_scroll">知识专栏</div>
+        <div class="side_nav_scroll">高清美图</div>
+        <div class="side_nav_scroll">精彩视频</div>
+        <div class="side_nav_scroll">应用推荐</div>
+        <div class="side_nav_scroll">最新专题</div>
+        <div class="side_nav_scroll">知识专栏</div>
+        <div class="side_nav_scroll">高清美图</div>
+        <div class="side_nav_scroll">精彩视频</div>
+        <div class="side_nav_scroll">应用推荐</div>
+        <div class="side_nav_scroll">最新专题</div>
+        <div class="side_nav_scroll">知识专栏</div>
+        <div class="side_nav_scroll">高清美图</div>
+        <div class="side_nav_scroll">精彩视频</div>
+        <div class="side_nav_scroll">应用推荐</div>
+        <div class="side_nav_scroll">最新专题</div>
+        <div class="side_nav_scroll">知识专栏</div>
+        <div class="side_nav_scroll">高清美图</div>
+        <div class="side_nav_scroll">精彩视频</div>
+    </div>
+</body>
+<script src="jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $(window).scroll(function () {
+            var scrollTop = $(window).scrollTop();
+            var forSize = $(".side_nav_scroll").length;
+            for (i = 0; i < forSize; i++) {
+                var plateTop = $(".side_nav_scroll").eq(i).offset().top;
+                if (scrollTop + 120 >= plateTop) {
+                    $(".side_nav dt").eq(i).addClass("f-hover").siblings("dt").removeClass("f-hover");
+                }
+            }
+        })
+        $(".side_nav dt").click(function () {
+            var n = $(this).index();
+            var plateTop = $(".side_nav_scroll").eq(n).offset().top;
+            $("body,html").animate({ scrollTop: plateTop }, 160)
+        })
+
+    })
+</script>
+
+</html>
+<!--
+文章来源：侧边/左侧目录导航随内容滚动而变化
+http://www.webkaka.com/tutorial/html/2021/0625115/
+//-->

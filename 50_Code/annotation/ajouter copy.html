@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="edit" id="inputContent" contenteditable="true" placeholder="请在这输入内容" onmousedown="blurEdit()"
+        onmouseup="mytest()">
+
+        text text text text text text text text text text text text text text text text text text text text text text
+        text text text text text text text text text text text text text text text text text text text text text text
+        text text text text text text text text text text
+
+
+    </div>
+    <button onclick="clickInsert()">点击插入一个按钮</button>
+</body>
+
+<script>
+    let position = ''
+    function blurEdit() {
+        position = window.getSelection().getRangeAt(0)
+    }
+    function clickInsert() {
+        if (position === '') {
+            // 如果div没有光标，则在div内容末尾插入
+            const div = document.getElementById('inputContent')
+            div.focus()
+            const range = window.getSelection()
+            range.selectAllChildren(div)
+            range.collapseToEnd()
+            position = window.getSelection().getRangeAt(0)
+        }
+        // 创建一个元素
+        const span = document.createElement('span')
+        // 插入的按钮不可编辑，设置contenteditable为false
+        span.innerHTML = '<button contenteditable="false" class="btn" id="btn1">插1</button>'
+        // 将按钮插入
+        position.insertNode(span)
+    }
+    function mytest(e) {
+        // var txt = window.getSelection() ? window.getSelection() : document.selection.createRange().text;
+        // if (txt == "") {//当选中内容为空时，阻止事件发生
+        //     window.event ? window.event.cancelBubble = true : e.stopPropagation();
+        // } else {
+        //     var txt1 = txt.toString();//得到的选中的文本是一个对象，需要转化为字符串
+        //     console.log(txt1)
+        // }
+        var selObj = window.getSelection();
+        var selText="";  
+        if(selObj.toString() != ""){ //不为空时 删除字符
+            selObj.modify("extend", "backward", "word");
+            selText = selObj.toString();
+            selObj.deleteFromDocument();
+        }
+        if (position === '') {
+            // 如果div没有光标，则在div内容末尾插入
+            // const div = document.getElementById('inputContent')
+            // div.focus()
+            // const range = window.getSelection()
+            // range.selectAllChildren(div)
+            // range.collapseToEnd()
+            position = window.getSelection().getRangeAt(0)
+        }
+        // 创建一个元素
+        const span = document.createElement('span')
+        // 插入的按钮不可编辑，设置contenteditable为false 
+        span.innerHTML = "&nbsp;" + '<button contenteditable="false" class="btn" id="btn1">'+ selText +'</button>'
+        // 将按钮插入
+        position.insertNode(span)
+        
+    }
+</script>
+
+</html>

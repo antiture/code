@@ -1,0 +1,73 @@
+.div-content-annotation{
+    height: 500px;
+    background-color: aqua;
+    font-size: 20px;
+    padding: 20px;
+}
+.span-annotation{
+    background-color: blueviolet;
+    display: inline;
+    color: aliceblue;
+    position: relative;   
+    border-radius: 4px;
+    outline: 1px solid black; 
+}
+.span-annotation:hover .ctn-btn-label-annotation{ 
+    display: inline;  
+}
+ 
+.ctn-btn-label-annotation:hover{
+    display: inline;
+}
+
+.ctn-btn-label-annotation{
+    position: absolute;
+    display: none; 
+    right: -48px;
+    top: -1px;
+    z-index: 1;
+}
+/* span[type= STRING]::after{
+    content: "STRING"; 
+    display: inline-block;
+    margin: 0px 4px 0px 8px ;
+    font-size: 14px; 
+} */
+span[type= BOOL]::after{
+    content: "BOOL"; 
+    display: inline-block;
+    margin: 0px 4px 0px 8px ;
+    font-size: 14px; 
+}
+
+
+
+
+.btn-label-annotation{
+    border-radius: 4px;
+    background-color: white;
+    outline: none;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+}
+
+
+
+
+
+
+.icon{
+    width: 24px;
+    height: 24px; 
+}
+.icon-type-input {
+    /* mask-image: url("type_input_4.svg");
+    -webkit-mask-image: url("type_input_4.svg"); */
+    background-color: blue;
+}
+.icon-select-cancel {
+    /* mask-image: url("select_cancel_4.svg");
+    -webkit-mask-image: url("select_cancel_4.svg"); */
+    background-color: red;
+}

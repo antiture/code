@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>左侧目录导航随内容滚动而变化</title>
+    <style type="text/css">
+        .side-nav {
+            line-height: 34px;
+            color: #999;
+            width: 240px; 
+            display: block;
+            overflow: hidden;
+            position: fixed;
+            left: 40px;
+            top: 20px;
+            z-index: 999;
+            padding: 0px;
+        }
+
+        .side-nav dt { 
+            height: auto;
+            margin: 10px 0 0;
+            display: block;
+            position: relative;
+            zoom: 1;
+            z-index: 10;
+            cursor: pointer;
+        }
+ 
+
+        .side-nav dt strong {
+            padding: 2px 0px 4px 0px;
+            font-size: 14px;
+            font-weight: normal;
+            color: #333; 
+            position: relative;  
+        }
+
+        .side-nav .f-hover strong {
+            color: firebrick; 
+            border-bottom: firebrick 3px solid;
+        }
+ 
+ 
+
+        .container {
+            width: calc(100% - 300px);
+            float: right;
+            height: auto;
+        }
+
+        .side-nav-scroll {
+            width: 100%;
+            min-height: 300px;
+            padding-top: 80px;
+        } 
+
+        .maindiv-scroll {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0px;
+            overflow: scroll;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="maindiv-scroll">
+
+        <ul class="side-nav">
+            <dt class="f-hover"></i><strong>游戏推荐</strong></dt>
+            <dt ></i><strong>应用推荐应用推荐</strong></dt>
+            <dt ></i><strong>最新专题</strong></dt>
+            <dt ></i><strong>知识专栏</strong></dt>
+            <dt ></i><strong>高清美图高清美图高清美图</strong></dt>
+            <dt ></i><strong>精彩视频</strong></dt>
+            <dt ></i><strong>应用推荐</strong></dt>
+            <dt ></i><strong>最新专题最新专题最新专题最新专题最新专题最新专题</strong></dt>
+            <dt ></i><strong>知识专栏</strong></dt>
+            <dt ></i><strong>高清美图</strong></dt>
+            <dt ></i><strong>精彩视频</strong></dt> 
+        </ul>
+        <div class="container">
+            <div class="side-nav-scroll">游戏推荐</div>
+            <div class="side-nav-scroll">应用推荐</div>
+            <div class="side-nav-scroll">
+                最新专题 <br>  
+            </div>
+            <div class="side-nav-scroll">知识专栏</div>
+            <div class="side-nav-scroll">高清美图</div>
+            <div class="side-nav-scroll">精彩视频</div>
+            <div class="side-nav-scroll">应用推荐</div>
+            <div class="side-nav-scroll">最新专题</div>
+            <div class="side-nav-scroll">知识专栏</div>
+            <div class="side-nav-scroll">高清美图</div>
+            <div class="side-nav-scroll">精彩视频</div>
+            <div class="side-nav-scroll">应用推荐</div>
+            <div class="side-nav-scroll">最新专题</div>
+            <div class="side-nav-scroll">知识专栏</div>
+            <div class="side-nav-scroll">高清美图</div>
+            <div class="side-nav-scroll">精彩视频</div>
+            <div class="side-nav-scroll">应用推荐</div>
+            <div class="side-nav-scroll">最新专题</div>
+            <div class="side-nav-scroll">知识专栏</div>
+            <div class="side-nav-scroll">高清美图</div>
+            <div class="side-nav-scroll">精彩视频</div>
+        </div>
+    </div>
+</body>
+<script src="jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".maindiv-scroll").scroll(function () {
+            var scrollTop = $(window).scrollTop();
+            var forSize = $(".side-nav-scroll").length;
+            for (i = 0; i < forSize; i++) {
+                var plateTop = $(".side-nav-scroll").eq(i).offset().top;
+                if (scrollTop + 120 >= plateTop) {
+                    $(".side-nav dt").eq(i).addClass("f-hover").siblings("dt").removeClass("f-hover");
+                    console.log(scrollTop, plateTop)
+                }
+            }
+        })
+        $(".side-nav dt").click(function () {
+            var n = $(this).index();
+            $(".side-nav-scroll")[n].scrollIntoView({behavior: "smooth" }); 
+        })
+
+    })
+</script>
+
+</html>
+<!--
+文章来源：侧边/左侧目录导航随内容滚动而变化
+http://www.webkaka.com/tutorial/html/2021/0625115/
+//-->

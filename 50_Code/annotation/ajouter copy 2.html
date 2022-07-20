@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="edit" id="inputContent" contenteditable="true" placeholder="请在这输入内容" onblur="blurEdit()"
+        onmouseup="mytest(this)">
+
+        text text text text text text text text text text text text text text text text text text text text text text
+        text text text text text text text text text text text text text text text text text text text text text text
+        text text text text text text text text text text
+        text text text text text text text text text text text text text text text text text text text text text text
+        text text text text text text text text text text text text text text text text text text text text text text
+        text text text text text text text text text text
+        text text text text text text text text text text text text text text text text text text text text text text
+        text text text text text text text text text text text text text text text text text text text text text text
+        text text text text text text text text text text
+        text text text text text text text text text text text text text text text text text text text text text text
+        text text text text text text text text text text text text text text text text text text text text text text
+        text text text text text text text text text text
+        text text text text text text text text text text text text text text text text text text text text text text
+        text text text text text text text text text text text text text text text text text text text text text text
+        text text text text text text text text text text
+
+
+    </div>
+    <button onclick="clickInsert()">点击插入一个按钮</button>
+</body>
+
+<script>
+    let position = ''
+    let positionInsert = ''
+    function blurEdit() {
+        positionInsert = window.getSelection().getRangeAt(0)
+    }
+    function clickInsert() {
+        if (positionInsert === '') {
+            // 如果div没有光标，则在div内容末尾插入
+            const div = document.getElementById('inputContent')
+            div.focus()
+            const range = window.getSelection()
+            range.selectAllChildren(div)
+            range.collapseToEnd()
+            positionInsert = window.getSelection().getRangeAt(0)
+        }
+        // 创建一个元素
+        const span = document.createElement('span')
+        // 插入的按钮不可编辑，设置contenteditable为false
+        span.innerHTML = '<span contenteditable="false" class="p"><span contenteditable="true" class="span-text"> Entrer le nom du entité </span><button  contenteditable="false" class="btn-p" >插</button><button contenteditable="false" class="btn-p btn-delet" >删</button></span>'
+        // 将按钮插入
+        positionInsert.insertNode(span)
+    }
+    function mytest(thisDiv) {
+        var selObj = window.getSelection();
+        var docFrag = selObj.getRangeAt(0).cloneContents();
+        var selBtnP = selObj.getRangeAt(0).cloneContents().querySelector(".btn-p");
+        var textPure = "";
+
+        var selText = "";
+        if (selObj.toString() != "") { //不为空时 删除字符
+            // selObj.modify("extend", "backward", "word");
+ 
+            if (selBtnP == null) {
+                textPure = selObj.toString();
+            } else {
+                docFrag.querySelector(".btn-p").replaceChildren();
+                docFrag.querySelector(".btn-delet").replaceChildren();
+                textPure = docFrag.textContent
+            }
+ 
+            selObj.deleteFromDocument();
+            if (position === '') {
+                position = selObj.getRangeAt(0)
+            }
+            // 创建元素
+            const span = document.createElement('span')
+            // 插入的按钮不可编辑，设置contenteditable为false 
+            span.innerHTML = '<span contenteditable="false" class="p"><span contenteditable="true" class="span-text">' + textPure + '</span><button  contenteditable="false" class="btn-p" >插</button><button contenteditable="false" class="btn-p btn-delet" >删</button></span>'
+            position.insertNode(span)
+            position = "";
+        }
+
+    }
+</script>
+
+</html>

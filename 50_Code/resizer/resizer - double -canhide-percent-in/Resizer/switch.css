@@ -1,0 +1,19 @@
+.switched-resizable-in .left-in{
+    right: 0px !important;
+}
+.switched-resizable-in #resizableResizerIn{
+    display: none;
+}
+.switched-resizable-in .right-in{
+    transform: translateX(calc(100% - 40px)) ;
+}
+.switched-resizable-in .right-in{
+    transform: translateX(calc(100% - 40px)) ;
+}
+.switched-resizable-in .switch-resizable-in{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 40px;
+}

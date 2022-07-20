@@ -1,0 +1,25 @@
+<html>
+
+<body>
+    <textarea cols=50 ondblclick="checkDblClick(event)">abc1space abc2space  abc3space   abc</textarea>
+    <script>
+        function checkDblClickDelayed(target) {
+            console.log(target.value.substr(target.selectionEnd - 1, 1));
+            debugger
+            while (target.value.substr(target.selectionEnd - 1, 1) == " ") {
+                target.selectionEnd = target.selectionEnd - 1;
+                console.log(target.selectionEnd )
+            }
+        }
+        function checkDblClick(e) {
+            //we make a delay of 0ms to wait until the selection is in the final position
+            target = e.target;
+            setTimeout(function () {
+                checkDblClickDelayed(target);
+                
+            }, 0);
+        }
+    </script>
+</body>
+
+</html>
