@@ -1,9 +1,9 @@
 
 var isResizingIn = false;
 var optionsIn = {
-    limiteRight: 300,
-    limiteLeft: 300,
-    startRight: "30%"
+    limR: 300,
+    limL: 300,
+    startR: "30%"
 }
 var ctnWidith;
 $(function(){
@@ -22,9 +22,9 @@ $(window).resize(function () {
     setStartIn()
 });
 function setStartIn(){
-    $("#resizableResizerIn").css('right',"max("+ optionsIn.startRight+"," + optionsIn.limiteRight + "px)"); 
-    $(".left-in").css('right',"max("+ optionsIn.startRight+"," + optionsIn.limiteRight + "px)");
-    $(".right-in").css({'width':optionsIn.startRight, "min-width": optionsIn.limiteRight + "px"});
+    $("#resizableResizerIn").css('right',"max("+ optionsIn.startR+"," + optionsIn.limR + "px)"); 
+    $(".left-in").css('right',"max("+ optionsIn.startR+"," + optionsIn.limR + "px)");
+    $(".right-in").css({'width':optionsIn.startR, "min-width": optionsIn.limR + "px"});
     var offsetRightTemp = $(".right-in").width()
     localStorage.setItem("resizerInOffsetRight",  offsetRightTemp); 
 }
@@ -36,19 +36,19 @@ function ResizerInMain() {
     var rightIn = $('.right-in');
     var offsetRightIn = 0;
     if (localStorage.getItem('resizerInOffsetRight') != null) {
-        if (localStorage.getItem('resizerInOffsetRight') > containerIn.width() - optionsIn.limiteLeft) {
-            offsetRightIn = containerIn.width() - optionsIn.limiteLeft ;
+        if (localStorage.getItem('resizerInOffsetRight') > containerIn.width() - optionsIn.limL) {
+            offsetRightIn = containerIn.width() - optionsIn.limL ;
         } else {
             offsetRightIn = localStorage.getItem('resizerInOffsetRight');
         }
     } else {
-        offsetRightIn = optionsIn.startRight;
+        offsetRightIn = optionsIn.startR;
     }
     ctnWidith = containerIn.width() 
     offsetRightPercent = offsetRightIn/ctnWidith*100 + "%"; 
-    leftIn.css('right',"max("+ offsetRightPercent+"," + optionsIn.limiteRight + "px)");
-    resizerIn.css('right', "max("+ offsetRightPercent+"," + optionsIn.limiteRight + "px)" );
-    rightIn.css({'width': offsetRightPercent , "min-width": optionsIn.limiteRight + "px" });
+    leftIn.css('right',"max("+ offsetRightPercent+"," + optionsIn.limR + "px)");
+    resizerIn.css('right', "max("+ offsetRightPercent+"," + optionsIn.limR + "px)" );
+    rightIn.css({'width': offsetRightPercent , "min-width": optionsIn.limR + "px" });
      
     
     resizerIn.on('mousedown', function () {
@@ -61,20 +61,20 @@ function ResizerInMain() {
         if (!isResizingIn) return true;
         x.stopPropagation(); 
         var offsetRightInMove = ctnWidith - (x.clientX - containerIn.offset().left) ;
-        if (offsetRightInMove <= optionsIn.limiteRight) {
-            leftIn.css({ 'right':"max(" + optionsIn.limiteRight + "px,"+ optionsIn.limiteRight/ctnWidith*100 + "%)"  });
-            resizerIn.css({ 'right':"max(" + optionsIn.limiteRight + "px,"+ optionsIn.limiteRight/ctnWidith*100 + "%)"  });
-            rightIn.css({ 'width': optionsIn.limiteRight /ctnWidith*100 + "%"});
-            localStorage.setItem("resizerInOffsetRight", optionsIn.limiteRight);
+        if (offsetRightInMove <= optionsIn.limR) {
+            leftIn.css({ 'right':"max(" + optionsIn.limR + "px,"+ optionsIn.limR/ctnWidith*100 + "%)"  });
+            resizerIn.css({ 'right':"max(" + optionsIn.limR + "px,"+ optionsIn.limR/ctnWidith*100 + "%)"  });
+            rightIn.css({ 'width': optionsIn.limR /ctnWidith*100 + "%"});
+            localStorage.setItem("resizerInOffsetRight", optionsIn.limR);
              
-        } else if (offsetRightInMove >= ctnWidith - optionsIn.limiteLeft) {
-            leftIn.css({ 'right':"max(" + optionsIn.limiteLeft + "px,"+ (ctnWidith -optionsIn.limiteLeft) /ctnWidith*100 + "%)"  });
-            resizerIn.css({'right':"max(" + optionsIn.limiteLeft + "px,"+ (ctnWidith -optionsIn.limiteLeft)/ctnWidith*100 + "%)"  });
-            rightIn.css({ 'width': (ctnWidith - optionsIn.limiteLeft)/ctnWidith*100 + "%" });
-            localStorage.setItem("resizerInOffsetRight", ctnWidith - optionsIn.limiteLeft);
+        } else if (offsetRightInMove >= ctnWidith - optionsIn.limL) {
+            leftIn.css({ 'right':"max(" + optionsIn.limL + "px,"+ (ctnWidith -optionsIn.limL) /ctnWidith*100 + "%)"  });
+            resizerIn.css({'right':"max(" + optionsIn.limL + "px,"+ (ctnWidith -optionsIn.limL)/ctnWidith*100 + "%)"  });
+            rightIn.css({ 'width': (ctnWidith - optionsIn.limL)/ctnWidith*100 + "%" });
+            localStorage.setItem("resizerInOffsetRight", ctnWidith - optionsIn.limL);
         } else {
-            leftIn.css({ 'right': "max(" + optionsIn.limiteLeft + "px,"+ offsetRightInMove/ctnWidith*100 + "%)" });
-            resizerIn.css('right', "max(" + optionsIn.limiteLeft + "px,"+ offsetRightInMove/ctnWidith*100 + "%)");
+            leftIn.css({ 'right': "max(" + optionsIn.limL + "px,"+ offsetRightInMove/ctnWidith*100 + "%)" });
+            resizerIn.css('right', "max(" + optionsIn.limL + "px,"+ offsetRightInMove/ctnWidith*100 + "%)");
             rightIn.css({ 'width': offsetRightInMove/ctnWidith*100 + "%" });
             localStorage.setItem("resizerInOffsetRight", offsetRightInMove ); 
              

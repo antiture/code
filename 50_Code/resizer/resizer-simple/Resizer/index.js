@@ -1,8 +1,8 @@
 
 var isResizingEx = false;
 var optionsEx = {
-    limiteRight:400 ,
-    limiteLeft: 100,
+    limR:400 ,
+    limL: 100,
     startLeft: 100
 }
 $(function(){
@@ -28,8 +28,8 @@ function ResizerExMain() {
     var rightEx = $('.right-ex');
     var offsetRight = 0;
     if (localStorage.getItem('resizerExOffsetRight') != null) {
-        if (localStorage.getItem('resizerExOffsetRight') > containerEx.width() - optionsEx.limiteLeft) {
-            offsetRight = containerEx.width() - optionsEx.limiteLeft ;
+        if (localStorage.getItem('resizerExOffsetRight') > containerEx.width() - optionsEx.limL) {
+            offsetRight = containerEx.width() - optionsEx.limL ;
         } else {
             offsetRight = localStorage.getItem('resizerExOffsetRight');
         }
@@ -50,16 +50,16 @@ function ResizerExMain() {
         if (!isResizingEx) return true;
         x.stopPropagation();
         var offsetRight = containerEx.width() - (x.clientX - containerEx.offset().left);
-        if (offsetRight <= optionsEx.limiteRight) {
-            leftEx.css({ 'right': optionsEx.limiteRight });
-            resizerEx.css('right', optionsEx.limiteRight);
-            rightEx.css({ 'width': optionsEx.limiteRight });
-            localStorage.setItem("resizerExOffsetRight", optionsEx.limiteRight);
-        } else if (offsetRight >= containerEx.width() - optionsEx.limiteLeft) {
-            leftEx.css({ 'right': containerEx.width() - optionsEx.limiteLeft });
-            resizerEx.css('right', containerEx.width() - optionsEx.limiteLeft);
-            rightEx.css({ 'width': containerEx.width() - optionsEx.limiteLeft });
-            localStorage.setItem("resizerExOffsetRight", containerEx.width() - optionsEx.limiteLeft);
+        if (offsetRight <= optionsEx.limR) {
+            leftEx.css({ 'right': optionsEx.limR });
+            resizerEx.css('right', optionsEx.limR);
+            rightEx.css({ 'width': optionsEx.limR });
+            localStorage.setItem("resizerExOffsetRight", optionsEx.limR);
+        } else if (offsetRight >= containerEx.width() - optionsEx.limL) {
+            leftEx.css({ 'right': containerEx.width() - optionsEx.limL });
+            resizerEx.css('right', containerEx.width() - optionsEx.limL);
+            rightEx.css({ 'width': containerEx.width() - optionsEx.limL });
+            localStorage.setItem("resizerExOffsetRight", containerEx.width() - optionsEx.limL);
         } else {
             leftEx.css({ 'right': offsetRight });
             resizerEx.css('right', offsetRight);

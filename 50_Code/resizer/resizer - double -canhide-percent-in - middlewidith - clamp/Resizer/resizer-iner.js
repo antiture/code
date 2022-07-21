@@ -1,9 +1,9 @@
 
 var isResizingIn = false;
 var optionsIn = {
-    limiteRight: 300,
-    limiteLeft: 300,
-    startRight: "30%"
+    limR: 300,
+    limL: 300,
+    startR: "30%"
 }
 var ctnWidith;
 $(function () {
@@ -23,9 +23,9 @@ $(window).resize(function () {
 });
 
 function setStartIn() {
-    $("#resizableResizerIn").css('right', "max(" + optionsIn.startRight + "," + optionsIn.limiteRight + "px)");
-    $(".left-in").css('right', "max(" + optionsIn.startRight + "," + optionsIn.limiteRight + "px)");
-    $(".right-in").css({ 'width': optionsIn.startRight, "min-width": optionsIn.limiteRight + "px" });
+    $("#resizableResizerIn").css('right', "max(" + optionsIn.startR + "," + optionsIn.limR + "px)");
+    $(".left-in").css('right', "max(" + optionsIn.startR + "," + optionsIn.limR + "px)");
+    $(".right-in").css({ 'width': optionsIn.startR, "min-width": optionsIn.limR + "px" });
     var offsetRightTemp = $(".right-in").width()
     debugger
     localStorage.setItem("resizerInOffsetRight", offsetRightTemp);
@@ -38,18 +38,18 @@ function resizerInMain() {
     var rightIn = $('.right-in');
     var offsetRightIn = 0;
     if (localStorage.getItem('resizerInOffsetRight') != null) {
-        if (localStorage.getItem('resizerInOffsetRight') > containerIn.width() - optionsIn.limiteLeft) {
-            offsetRightIn = containerIn.width() - optionsIn.limiteLeft;
+        if (localStorage.getItem('resizerInOffsetRight') > containerIn.width() - optionsIn.limL) {
+            offsetRightIn = containerIn.width() - optionsIn.limL;
         } else {
             offsetRightIn = localStorage.getItem('resizerInOffsetRight');
         }
     } else {
-        offsetRightIn = optionsIn.startRight;
+        offsetRightIn = optionsIn.startR;
     }
     ctnWidith = containerIn.width()
     offsetRightPercent = offsetRightIn / ctnWidith * 100 + "%";
-    leftIn.css({'right': "max(" + offsetRightPercent + "," + optionsIn.limiteRight + "px)", "min-width" : optionsIn.limiteLeft + "px"});
-    rightIn.css({ 'width': offsetRightPercent, "min-width": optionsIn.limiteRight + "px", "max-width" : "calc(100% - " + optionsIn.limiteLeft +"px)" });
+    leftIn.css({'right': "max(" + offsetRightPercent + "," + optionsIn.limR + "px)", "min-width" : optionsIn.limL + "px"});
+    rightIn.css({ 'width': offsetRightPercent, "min-width": optionsIn.limR + "px", "max-width" : "calc(100% - " + optionsIn.limL +"px)" });
      
 
 
@@ -63,16 +63,16 @@ function resizerInMain() {
         if (!isResizingIn) return true;
         x.stopPropagation();
         var offsetRightInMove = ctnWidith - (x.clientX - containerIn.offset().left);
-        if (offsetRightInMove <= optionsIn.limiteRight) {
-            leftIn.css({ 'right':  optionsIn.limiteRight  + "px" });
-            rightIn.css({ 'width': optionsIn.limiteRight + "px" });
-            localStorage.setItem("resizerInOffsetRight", optionsIn.limiteRight); 
-        } else if (offsetRightInMove >= ctnWidith - optionsIn.limiteLeft) { 
-            leftIn.css({ 'right': "max(" + optionsIn.limiteLeft + "px," + (ctnWidith - optionsIn.limiteLeft) / ctnWidith * 100 + "%)" });
-            rightIn.css({ 'width': (ctnWidith - optionsIn.limiteLeft) / ctnWidith * 100 + "%" });
-            localStorage.setItem("resizerInOffsetRight", ctnWidith - optionsIn.limiteLeft); 
+        if (offsetRightInMove <= optionsIn.limR) {
+            leftIn.css({ 'right':  optionsIn.limR  + "px" });
+            rightIn.css({ 'width': optionsIn.limR + "px" });
+            localStorage.setItem("resizerInOffsetRight", optionsIn.limR); 
+        } else if (offsetRightInMove >= ctnWidith - optionsIn.limL) { 
+            leftIn.css({ 'right': "max(" + optionsIn.limL + "px," + (ctnWidith - optionsIn.limL) / ctnWidith * 100 + "%)" });
+            rightIn.css({ 'width': (ctnWidith - optionsIn.limL) / ctnWidith * 100 + "%" });
+            localStorage.setItem("resizerInOffsetRight", ctnWidith - optionsIn.limL); 
         } else {
-            leftIn.css({ 'right': "max(" + optionsIn.limiteLeft + "px," + offsetRightInMove / ctnWidith * 100 + "%)" });
+            leftIn.css({ 'right': "max(" + optionsIn.limL + "px," + offsetRightInMove / ctnWidith * 100 + "%)" });
             rightIn.css({ 'width': offsetRightInMove / ctnWidith * 100 + "%" });
             localStorage.setItem("resizerInOffsetRight", offsetRightInMove); 
         }

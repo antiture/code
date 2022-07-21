@@ -1,8 +1,8 @@
 
 var isResizingIn = false;
 var optionsIn = {
-    limiteRight: 100,
-    limiteLeft: 400,
+    limR: 100,
+    limL: 400,
     startLeft: 100
 }
 $(function(){
@@ -20,7 +20,7 @@ function setStartIn(){
     $(".left-in").css('right',containerIn.width() - optionsIn.startLeft);
     $(".right-in").css('width',containerIn.width() - optionsIn.startLeft);
     localStorage.setItem("resizerInOffsetRight", containerIn.width() - optionsIn.startLeft);
-    setLimiteRight()
+    setlimR()
 }
 function ResizerInMain() {
     var resizerIn = $('#resizableResizerIn');
@@ -29,8 +29,8 @@ function ResizerInMain() {
     var rightIn = $('.right-in');
     var offsetRight = 0;
     if (localStorage.getItem('resizerInOffsetRight') != null) {
-        if (localStorage.getItem('resizerInOffsetRight') > containerIn.width() - optionsIn.limiteLeft) {
-            offsetRight = containerIn.width() - optionsIn.limiteLeft ;
+        if (localStorage.getItem('resizerInOffsetRight') > containerIn.width() - optionsIn.limL) {
+            offsetRight = containerIn.width() - optionsIn.limL ;
         } else {
             offsetRight = localStorage.getItem('resizerInOffsetRight');
         }
@@ -51,24 +51,24 @@ function ResizerInMain() {
         if (!isResizingIn) return true;
         x.stopPropagation();
         var offsetRight = containerIn.width() - (x.clientX - containerIn.offset().left);
-        if (offsetRight <= optionsIn.limiteRight) {
-            leftIn.css({ 'right': optionsIn.limiteRight });
-            resizerIn.css('right', optionsIn.limiteRight);
-            rightIn.css({ 'width': optionsIn.limiteRight });
-            localStorage.setItem("resizerInOffsetRight", optionsIn.limiteRight);
-            setLimiteRight()
-        } else if (offsetRight >= containerIn.width() - optionsIn.limiteLeft) {
-            leftIn.css({ 'right': containerIn.width() - optionsIn.limiteLeft });
-            resizerIn.css('right', containerIn.width() - optionsIn.limiteLeft);
-            rightIn.css({ 'width': containerIn.width() - optionsIn.limiteLeft });
-            localStorage.setItem("resizerInOffsetRight", containerIn.width() - optionsIn.limiteLeft);
-            setLimiteRight()
+        if (offsetRight <= optionsIn.limR) {
+            leftIn.css({ 'right': optionsIn.limR });
+            resizerIn.css('right', optionsIn.limR);
+            rightIn.css({ 'width': optionsIn.limR });
+            localStorage.setItem("resizerInOffsetRight", optionsIn.limR);
+            setlimR()
+        } else if (offsetRight >= containerIn.width() - optionsIn.limL) {
+            leftIn.css({ 'right': containerIn.width() - optionsIn.limL });
+            resizerIn.css('right', containerIn.width() - optionsIn.limL);
+            rightIn.css({ 'width': containerIn.width() - optionsIn.limL });
+            localStorage.setItem("resizerInOffsetRight", containerIn.width() - optionsIn.limL);
+            setlimR()
         } else {
             leftIn.css({ 'right': offsetRight });
             resizerIn.css('right', offsetRight);
             rightIn.css({ 'width': offsetRight });
             localStorage.setItem("resizerInOffsetRight", offsetRight);
-            setLimiteRight()
+            setlimR()
         }
     }).on('mouseup', function () {
         if (isResizingIn) {
