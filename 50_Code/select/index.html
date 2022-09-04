@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>选择</title>
+		<style type="text/css">
+			body,
+			html,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			ul,
+			li,
+			div,
+			input {
+				margin: 0;
+				padding: 0;
+			}
+
+			.root {
+				width: 1500px;
+				display: flex;
+				flex-wrap: wrap;
+				margin: 30px auto;
+				position: relative;
+			}
+
+			.root>div {
+				width: 200px;
+				height: 200px;
+				background-color: #00FF00;
+				transition: background-color 0s ease-in;
+				margin: 5px;
+
+			}
+
+			.MouseDiv {
+				position: absolute;
+				background-color: #067DF8;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 class="title">已选中0个</h1><span>这个计数器可能会鬼畜， 不要理会</span>
+		<div class="root">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<script type="text/javascript">
+			const root = document.querySelector('.root')
+			const divs = root.querySelectorAll('div')
+			//创建一个DIV DOM
+			const div = document.createElement('div')
+			const title = document.querySelector('.title')
+			const body = document.body
+			let ClientLeft, ClientTop, OffsetLeft, OffsetTop = null
+			let addLength = []
+			//给DIV添加CLass名
+			div.classList.add('MouseDiv')
+			//初始化
+			//这个听说是可以取消浏览器选中文字拖拽的， 但是实际上也不知道有什么用
+			window.getSelection().removeAllRanges()
+			//鼠标点击事件
+			function OnMousDown(e) {
+				//点击时， 取消之前选中的div
+				for (let i = 0; i < divs.length; i++) {
+					divs[i].style.backgroundColor = '#00FF00'
+				}
+				//将定义好的div添加到body中， 实现鼠标按住有个可视化选区
+				body.appendChild(div)
+				//当点击时， 记录点击的位置
+				ClientLeft = OffsetLeft = e.clientX
+				ClientTop = OffsetTop = e.clientY
+				//给body添加鼠标移动事件
+				body.addEventListener('mousemove', OnMousOver)
+				return false
+			}
+			//鼠标抬起时事件
+			function OnMousUp() {
+				//当鼠标台起时， div的样式清零， 这个div是创建的虚拟div
+				div.style.width = 0 + 'px'
+				div.style.height = 0 + 'px'
+				//然后进行删除
+				div.remove()
+				//移除鼠标移动事件
+				body.removeEventListener('mousemove', OnMousOver)
+				return false
+			}
+
+			//给body添加鼠标按下事件和鼠标抬起事件
+			body.addEventListener('mousedown', OnMousDown, false)
+			body.addEventListener('mouseup', OnMousUp, false)
+
+			//鼠标移动事件
+			function OnMousOver(e) {
+				//判断是否是往左移动鼠标
+				if (ClientLeft >= e.clientX) {
+					// 左边
+					div.style.left = ''
+					div.style.bottom = ''
+					div.style.right = ((body.clientWidth - ClientLeft)) + 'px'
+					div.style.top = (ClientTop) + 'px'
+					div.style.width = (ClientLeft - e.clientX) + 'px'
+					div.style.height = (e.clientY - ClientTop) + 'px'
+				} else {
+					//如果不是往左移动， 则往右移动
+					// 右边
+					div.style.left = (ClientLeft) + 'px'
+					div.style.right = ''
+					div.style.bottom = ''
+					div.style.top = (ClientTop) + 'px'
+					div.style.width = (e.clientX - ClientLeft) + 'px'
+					div.style.height = (e.clientY - ClientTop) + 'px'
+				}
+				if (ClientTop > e.clientY) {
+					//鼠标往上时
+					//左上和右上
+					div.style.top = ''
+					div.style.bottom = (body.clientHeight - ClientTop + (Math.floor(OffsetTop / 2.5))) + 'px'
+					div.style.height = (ClientTop - e.clientY) + 'px'
+				}
+				for (let i = 0; i < divs.length; i++) {
+					//将移动的div和div元素进行体积判断
+					if (
+						//左边判断
+						div.offsetLeft <= (divs[i].offsetLeft + (divs[i].offsetWidth * 2)) &&
+						((div.offsetLeft + div.offsetWidth) >= (divs[i].offsetLeft + divs[i].offsetWidth))
+						//右边判断
+						&&
+						div.offsetTop <= divs[i].offsetTop + divs[i].offsetHeight &&
+						div.offsetTop + div.offsetHeight >= (divs[i].offsetTop + (divs[i].offsetHeight / 3))
+					) {
+						//如果相等， 则添加背景颜色
+						if (divs[i].style.backgroundColor === 'rgb(0, 0, 0)') {
+							//如果已经添加， 则跳出
+							continue
+						}
+						//将已选中的添加到数组中
+						addLength.push(divs[i])
+						divs[i].style.backgroundColor = '#000'
+
+					} else {
+						//如果没有选中则清除颜色
+						divs[i].style.backgroundColor = '#00FF00'
+						//数组删除
+						addLength.splice(i, 1)
+					}
+				}
+				//进行页面输出
+				title.innerText = '已选中' + addLength.length + '个'
+				return false
+			}
+		</script>
+	</body>
+</html>
