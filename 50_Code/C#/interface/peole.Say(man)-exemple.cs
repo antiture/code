@@ -5,7 +5,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public interface IItemAdd
 {
-    void ItemAdd();
+    void ItemAdd(IItemAdd iItem);
 }
 
 public class Clause : IItemAdd
@@ -13,7 +13,7 @@ public class Clause : IItemAdd
     public int ClauseNum { get; set; }
     public void ItemAdd()
     {
-        Console.WriteLine("Clause！");
+        Console.WriteLine("Clause");
     }
 }
 
@@ -22,7 +22,7 @@ public class SubClause : IItemAdd
     public int SubClauseNum { get; set; }
     public void ItemAdd()
     {
-        Console.WriteLine("SubClause！");
+        Console.WriteLine("SubClause");
     }
 }
 
