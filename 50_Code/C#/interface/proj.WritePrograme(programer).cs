@@ -53,46 +53,48 @@ class Program
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-interface ICcagItem
+interface IItem
 {
-    voide CcagItemAdd();
+    void ItemAdd();
 }
 
 // 然后声明两个类，并实现IProgramer接口：
-class CcagClause : ICcagItem
+class Clause : IItem
 {
-    voide CcagItemAdd(CcagClause ccagClause)
+    public int ClauseNum { get; set; }
+    void ItemAdd(Clause clause)
     {
         //_documentServie.>
     }
 }
 
-class CcagSubClause : ICcagItem
+class SubClause : IItem
 {
-    voide CcagItemAdd(CcagSubClause ccagSubClause)
+    public int SubClauseNum { get; set; }
+    void ItemAdd(SubClause subClause)
     {
         //_documentServie.>
     }
 }
 
-class CcagDocument
+class Document
 {
-    CcagItemAdd(ICcagItem ccagItem)
+    void ItemAdd(IItem iItem)
     {
-        ccagItem.CcagItemAdd(); //写代码
+        iItem.ItemAdd(); //写代码
     }
 }
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        CcagDocument ccagDocument = new CcagDocument();
+        Document document = new Document();
 
-        ICcagItem iCcagItem; 
-        iCcagItem = new CcagClause(){
-            Id = id
+        IItem iItem; 
+        iItem = new Clause(){
+            ClauseNum = clauseNum /// attribue different 
         };
-        ccagDocument.CcagItemAdd(iCcagItem);
+        document.ItemAdd(iItem);
     }
 }
