@@ -41,3 +41,52 @@ class Program
         Console.ReadLine();
     }
 }
+
+// exemple //////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+public interface ICcagItemAdd
+{
+    void CcagItemAdd();
+}
+
+public class CcagClause : ICcagItemAdd
+{
+    public void CcagItemAdd()
+    {
+        Console.WriteLine("你好，我是男士！");
+    }
+}
+
+public class CcagSubClause : ICcagItemAdd
+{
+    public void CcagItemAdd()
+    {
+        Console.WriteLine("你好，我是女士！");
+    }
+}
+
+public class CcagItem
+{
+    public void CcagItemAdd(ICcagItemAdd iCcagItem)
+    {
+        iCcagItem.CcagItemAdd();
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        CcagClause ccagClause = new CcagClause();
+        CcagSubClause ccagSubClause = new CcagSubClause();
+        CcagItem ccagItem = new CcagItem();
+        ccagItem.CcagItemAdd(ccagClause);
+        ccagItem.CcagItemAdd(ccagSubClause);
+        Console.ReadLine();
+    }
+}
+
