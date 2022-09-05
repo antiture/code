@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+
+ul {
+    width: 500px;
+    height: auto;
+    margin: 0;
+    padding: 20px;
+    font-size: 0;
+    /*需设置定位*/
+    position: relative;
+}
+
+li {
+    width: 300px;
+    height: 30px;
+    margin: 4px;
+    padding: 0;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 13px;
+    border: 1px solid #d9d9d9;
+}
+
+#moveSelected {
+    position: absolute;
+    background-color: blue;
+    opacity: 0.3;
+    border: 1px dashed #d9d9d9;
+    top: 0;
+    left: 0;
+}
+
+.selected {
+    background-color: pink;
+}

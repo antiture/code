@@ -1,0 +1,46 @@
+body {
+    margin: 0%;
+}
+
+.ctn-dragselection {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    overflow: scroll;
+}
+
+.dragselection {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 20px;
+    font-size: 0;
+    /*需设置定位*/
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-list  {
+    width: 300px;
+    height: 30px;
+    margin: 4px;
+    padding: 0;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 13px;
+    border: 1px solid #d9d9d9;
+}
+
+#moveSelected {
+    position: absolute;
+    background-color: blue;
+    opacity: 0.3;
+    border: 1px dashed #d9d9d9;
+    top: 0;
+    left: 0;
+}
+
+.selected {
+    background-color: pink;
+}
