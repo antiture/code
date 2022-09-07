@@ -3,24 +3,24 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-public interface IItemAdd
+public interface IItemAdd<T>
 {
-    void ItemAdd(IItemAdd iItem);
+    void ItemAdd(T parameters);
 }
 
-public class Clause : IItemAdd
+public class Clause : IItemAdd<Clause>
 {
     public int ClauseNum { get; set; }
-    public void ItemAdd()
+    public void ItemAdd(Clause clause)
     {
         Console.WriteLine("Clause");
     }
 }
 
-public class SubClause : IItemAdd
+public class SubClause : IItemAdd<SubClause>
 {
     public int SubClauseNum { get; set; }
-    public void ItemAdd()
+    public void ItemAdd(SubClause cubClause)
     {
         Console.WriteLine("SubClause");
     }
@@ -29,7 +29,7 @@ public class SubClause : IItemAdd
 public class Item
 {
     public void ItemAdd(IItemAdd iItem)
-    {
+    { 
         iItem.ItemAdd();
     }
 }

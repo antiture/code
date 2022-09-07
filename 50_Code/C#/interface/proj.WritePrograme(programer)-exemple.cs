@@ -14,7 +14,7 @@ interface IItem
 class Clause : IItem
 {
     public int ClauseNum { get; set; }
-    void ItemAdd(Clause clause)
+    public void ItemAdd(IItem clause)
     {
         //_documentServie.>
     }
@@ -22,7 +22,7 @@ class Clause : IItem
 class SubClause : IItem
 {
     public int SubClauseNum { get; set; }
-    void ItemAdd(SubClause subClause)
+    public void ItemAdd(IItem subClause)
     {
         //_documentServie.>
     }
