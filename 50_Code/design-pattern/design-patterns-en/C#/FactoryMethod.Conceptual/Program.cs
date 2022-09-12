@@ -7,41 +7,26 @@ using System;
 
 namespace RefactoringGuru.DesignPatterns.FactoryMethod.Conceptual
 {
-    // The Creator class declares the factory method that is supposed to return
-    // an object of a Product class. The Creator's subclasses usually provide
-    // the implementation of this method.
     abstract class Creator
     {
-        // Note that the Creator may also provide some default implementation of
-        // the factory method.
+        //1 创建者 （Cre­ator） 类声明返回产品对象的工厂方法。 该方法的返回对象类型必须与产品接口相匹配。  
+        // 注意， 尽管它的名字是创建者， 但它最主要的职责并不是创建产品。 一般来说， 创建者类包含一些与产品相关的核心业务逻辑。 工厂方法将这些逻辑处理从具体产品类中分离出来。 打个比方， 大型软件开发公司拥有程序员培训部门。 但是， 这些公司的主要工作还是编写代码， 而非生产程序员。
         public abstract IProduct FactoryMethod();
+        // 你可以将工厂方法声明为抽象方法， 强制要求每个子类以不同方式实现该方法。 或者， 你也可以在基础工厂方法中返回默认产品类型。
 
-        // Also note that, despite its name, the Creator's primary
-        // responsibility is not creating products. Usually, it contains some
-        // core business logic that relies on Product objects, returned by the
-        // factory method. Subclasses can indirectly change that business logic
-        // by overriding the factory method and returning a different type of
-        // product from it.
         public string SomeOperation()
         {
-            // Call the factory method to create a Product object.
             var product = FactoryMethod();
-            // Now, use the product.
-            var result = "Creator: The same creator's code has just worked with "
-                + product.Operation();
-
+            var result =
+                "Creator: The same creator's code has just worked with " + product.Operation();
             return result;
         }
     }
 
-    // Concrete Creators override the factory method in order to change the
-    // resulting product's type.
     class ConcreteCreator1 : Creator
     {
-        // Note that the signature of the method still uses the abstract product
-        // type, even though the concrete product is actually returned from the
-        // method. This way the Creator can stay independent of concrete product
-        // classes.
+        //4 具体创建者 （Con­crete Cre­ators） 将会重写基础工厂方法， 使其返回不同类型的产品。
+        //注意， 并不一定每次调用工厂方法都会创建新的实例。 工厂方法也可以返回缓存、 对象池或其他来源的已有对象。
         public override IProduct FactoryMethod()
         {
             return new ConcreteProduct1();
@@ -56,15 +41,12 @@ namespace RefactoringGuru.DesignPatterns.FactoryMethod.Conceptual
         }
     }
 
-    // The Product interface declares the operations that all concrete products
-    // must implement.
     public interface IProduct
     {
+        //1 产品 （Prod­uct） 将会对接口进行声明。 对于所有由创建者及其子类构建的对象， 这些接口都是通用的。
         string Operation();
     }
 
-    // Concrete Products provide various implementations of the Product
-    // interface.
     class ConcreteProduct1 : IProduct
     {
         public string Operation()
@@ -75,6 +57,7 @@ namespace RefactoringGuru.DesignPatterns.FactoryMethod.Conceptual
 
     class ConcreteProduct2 : IProduct
     {
+        //2 具体产品（Con­crete Prod­ucts） 是产品接口的不同实现。
         public string Operation()
         {
             return "{Result of ConcreteProduct2}";
@@ -83,35 +66,31 @@ namespace RefactoringGuru.DesignPatterns.FactoryMethod.Conceptual
 
     class Client
     {
-        public void Main()
-        {
-            Console.WriteLine("App: Launched with the ConcreteCreator1.");
-            ClientCode(new ConcreteCreator1());
-            
-            Console.WriteLine("");
+        // public void Main()
+        // {
+        //     Console.WriteLine("App: Launched with the ConcreteCreator1.");
+        //     ClientCode(new ConcreteCreator1());
 
-            Console.WriteLine("App: Launched with the ConcreteCreator2.");
-            ClientCode(new ConcreteCreator2());
-        }
+        //     Console.WriteLine("");
 
-        // The client code works with an instance of a concrete creator, albeit
-        // through its base interface. As long as the client keeps working with
-        // the creator via the base interface, you can pass it any creator's
-        // subclass.
-        public void ClientCode(Creator creator)
-        {
-            // ...
-            Console.WriteLine("Client: I'm not aware of the creator's class," +
-                "but it still works.\n" + creator.SomeOperation());
-            // ...
-        }
+        //     Console.WriteLine("App: Launched with the ConcreteCreator2.");
+        //     ClientCode(new ConcreteCreator2());
+        // }
+        // public void ClientCode(Creator creator)
+        // {
+        //     Console.WriteLine(
+        //         "Client: I'm not aware of the creator's class,"
+        //             + "but it still works.\n"
+        //             + creator.SomeOperation()
+        //     );
+        // }
     }
 
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            new Client().Main();
-        }
-    }
+    // class Program
+    // {
+    //     static void Main(string[] args)
+    //     {
+    //         new Client().Main();
+    //     }
+    // }
 }
