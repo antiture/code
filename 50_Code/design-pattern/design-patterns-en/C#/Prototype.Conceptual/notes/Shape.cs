@@ -72,14 +72,13 @@ namespace RefactoringGuru.DesignPatterns.Shape.Conceptual
             Shape anotherCircle = circle.Clone();
             circle.Radius = 1000000;
             Shapes.Add(anotherCircle);
-        } 
+        }
     }
 
     class Program
     {
         static void Main(string[] args)
-        {   
-
+        {
             List<Shape> Shapes = new List<Shape>();
             Circle circle = new Circle();
             circle.X = 10;
@@ -89,7 +88,7 @@ namespace RefactoringGuru.DesignPatterns.Shape.Conceptual
             Shape anotherCircle = circle.Clone();
             circle.Radius = 1000000;
             Shapes.Add(anotherCircle);
-  
+
             string circleResult = "Shapes:" + "\n";
             foreach (Circle circleInShapes in Shapes)
             {
