@@ -1,13 +1,13 @@
 //space SL.Model
 
-public abstract class CcagItem
+public abstract class Item
 { 
     public Guid Id { get; set; }
     public int Version { get; set; }
     public String Item { get; set; }
     public int Num { get; set; }
 }
-public class CcagClause : CcagItem
+public class Clause : Item
 {   
     public int OrderNum { get; set; }
     public int ChapterNum { get; set; }
@@ -17,15 +17,15 @@ public class CcagClause : CcagItem
 }
 
 //space SL.WebSite
-public interface ICcagItem<T>        // <Type> type de signature non defini
+public interface IItem<T>        // <Type> type de signature non defini
 {
     public void ItemAdd(T parameters);
 }
 
-public class CcagClauseModel: ICcagItem<CcagClause>
+public class ClauseModel: IItem<Clause>
 {
-    public CcagClause CcagClause { get; set; }
-    public void ItemAdd(CcagClause ccagClause)
+    public Clause Clause { get; set; }
+    public void ItemAdd(Clause clause)
     {
         throw new NotImplementedException();
     }
@@ -37,9 +37,9 @@ class Program
     {
         var orderNum = 1;
 
-        CcagClauseModel ccagClause = new CcagClauseModel(){
+        ClauseModel clause = new ClauseModel(){
             OrderNum = orderNum /// attribue 赋值
         };
-        ccagClause.ItemAdd(ccagClause);
+        clause.ItemAdd(clause);
     }
 }
