@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 
-public abstract class AItem
+public abstract class Item
 {
     public Guid Id { get; set; }
 }
 
-public class Clause : AItem
+public class Clause : Item
 {
     public String Text { get; set; }
 }
