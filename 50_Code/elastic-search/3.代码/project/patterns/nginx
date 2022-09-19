@@ -1,0 +1,2 @@
+NGINXACCESS %{IPORHOST:clientip} %{HTTPDUSER:ident} %{USER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-)
+NGINXACCESSLOG %{COMMONAPACHELOG} %{QS:referrer} %{QS:agent}
